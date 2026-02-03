@@ -85,14 +85,7 @@ export class TaskService {
       params.push(options.priority);
     }
 
-    query += ' ORDER BY 
-      CASE priority 
-        WHEN "urgent" THEN 1 
-        WHEN "high" THEN 2 
-        WHEN "normal" THEN 3 
-        ELSE 4 
-      END,
-      created_at DESC';
+    query += ' ORDER BY priority = "urgent" DESC, priority = "high" DESC, priority = "normal" DESC, priority = "low" DESC, created_at DESC';
 
     if (options.limit) {
       query += ' LIMIT ?';
