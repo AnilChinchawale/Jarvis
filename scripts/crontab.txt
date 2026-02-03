@@ -1,0 +1,29 @@
+# Multi-Agent System - Cron Configuration
+# Add these to your crontab with: crontab -e
+
+# Environment
+SHELL=/bin/bash
+PATH=/usr/local/bin:/usr/bin:/bin
+WORKSPACE=/Users/anilchinchawale/clawd/multi-agent-system
+
+# Agent Heartbeats - Staggered every 2 minutes
+# Jarvis - Squad Lead (every 15 min at :00)
+*/15 * * * * cd $WORKSPACE && ./scripts/heartbeat.sh jarvis >> memory/cron-jarvis.log 2>&1
+
+# Shuri - Product Analyst (every 15 min at :02)
+2-59/15 * * * * cd $WORKSPACE && ./scripts/heartbeat.sh shuri >> memory/cron-shuri.log 2>&1
+
+# Fury - Customer Researcher (every 15 min at :04)
+4-59/15 * * * * cd $WORKSPACE && ./scripts/heartbeat.sh fury >> memory/cron-fury.log 2>&1
+
+# Vision - SEO Analyst (every 15 min at :06)
+6-59/15 * * * * cd $WORKSPACE && ./scripts/heartbeat.sh vision >> memory/cron-vision.log 2>&1
+
+# Loki - Content Writer (every 15 min at :08)
+8-59/15 * * * * cd $WORKSPACE && ./scripts/heartbeat.sh loki >> memory/cron-loki.log 2>&1
+
+# Daily Standup Generation (9:00 AM weekdays)
+0 9 * * 1-5 cd $WORKSPACE/mission-control && npm run dev -- standup generate --save >> ../memory/standup.log 2>&1
+
+# Notification Daemon (ensure it's running)
+*/5 * * * * cd $WORKSPACE && pgrep -f "notification-daemon" || npm run --prefix mission-control daemon >> memory/daemon.log 2>&1

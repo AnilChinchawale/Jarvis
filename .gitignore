@@ -1,0 +1,41 @@
+# Dependencies
+node_modules/
+*.log
+npm-debug.log*
+
+# Build output
+dist/
+build/
+
+# Database
+*.db
+*.db-journal
+data/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Memory files (generated)
+memory/cron-*.log
+memory/daemon.log
+memory/heartbeat.log
+memory/standup.log
+
+# Agent inboxes (runtime)
+agents/*/inbox.jsonl
+
+# Session files
+*.session
