@@ -1,4 +1,5 @@
 import Database from 'better-sqlite3';
+import type { Database as DatabaseType } from 'better-sqlite3';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { mkdirSync } from 'fs';
@@ -11,7 +12,7 @@ const DB_PATH = join(DATA_DIR, 'mission-control.db');
 mkdirSync(DATA_DIR, { recursive: true });
 
 // Initialize database
-export const db = new Database(DB_PATH);
+export const db: DatabaseType = new Database(DB_PATH);
 db.pragma('journal_mode = WAL');
 db.pragma('foreign_keys = ON');
 

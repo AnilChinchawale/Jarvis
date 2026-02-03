@@ -289,7 +289,7 @@ standupCmd
 program
   .command('dashboard')
   .description('Show system dashboard')
-  .action(() => {
+  .action(async () => {
     try {
       console.log(chalk.bold.blue('\n📊 Mission Control Dashboard\n'));
       
